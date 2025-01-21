@@ -1,0 +1,48 @@
+{
+  "fakultas": [
+    {
+      "id": 1,
+      "kode": "1a",
+      "nama": "ilmu mesin"
+    },
+    {
+      "id": 2,
+      "kode": "2a",
+      "nama": "teknik"
+    }
+  ],
+  "prodi": [
+    {
+      "id": 1,
+      "kode": "1a",
+      "fakultas": "mesin",
+      "nama": "ilmu mesin"
+    },
+    {
+      "id": 2,
+      "kode": "2a",
+      "fakultas": "mesin",
+      "nama": "teknik"
+    }
+  ],
+  "Target": [
+    {
+      "id": 1,
+      "kode": "1a",
+      "nama": "ilmu mesin"
+    },
+    {
+      "id": 2,
+      "kode": "2a",
+      "nama": "teknik"
+    }
+  ],
+  "survei": [
+    {
+      "id": 1,
+      "code": "1A",
+      "name": "Survey Kepuasan Tenaga Pendidikan",
+      "target": "fakultas perikanan"
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "admin": [
+    {
+      "name": "Dashboard",
+      "link": "dashboard"
+    },
+    {
+      "name": "Master",
+      "link": [
+        {
+          "name": "Fakultas",
+          "link": "master_fakultas"
+        },
+        {
+          "name": "Prodi",
+          "link": "master_prodi"
+        }
+      ]
+    },
+    {
+      "name": "Pengguna",
+      "link": [
+        {
+          "name": "Fakultas",
+          "link": "user_fakultas"
+        },
+        {
+          "name": "Prodi",
+          "link": "user_prodi"
+        }
+      ]
+    }
+  ],
+  "prodi": [
+    {
+      "name": "Dashboard",
+      "link": "dashboard"
+    }
+  ],
+  "fakultas": [
+    {
+      "name": "Dashboard",
+      "link": "dashboard"
+    }
+  ],
+  "guest": [
+    {
+      "name": "Home",
+      "link": "home"
+    }
+  ]
+}
