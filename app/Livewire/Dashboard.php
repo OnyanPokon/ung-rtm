@@ -47,15 +47,15 @@ class Dashboard extends Component
             case 'universitas':
                 return view('livewire.admin.admin-dashboard')
                     ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-                    ->title('UNG Survey - Admin Dashboard');
+                    ->title('UNG RTM - Admin Dashboard');
             case 'fakultas':
                 return view('livewire.fakultas.fakultas-dashboard')
                     ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-                    ->title('UNG Survey - Fakultas Dashboard');
+                    ->title('UNG RTM - Fakultas Dashboard');
             case 'prodi':
                 return view('livewire.prodi.prodi-dashboard')
                     ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-                    ->title('UNG Survey - Jurusan Dashboard');
+                    ->title('UNG RTM - Jurusan Dashboard');
             default:
                 abort(403, 'Unauthorized');
         }

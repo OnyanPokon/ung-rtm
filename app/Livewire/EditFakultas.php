@@ -27,7 +27,7 @@ class EditFakultas extends Component
     {
         return view('livewire.admin.master.fakultas.edit-fakultas')
         ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-        ->title('UNG Survey - Master Fakultas');
+        ->title('UNG RTM - Master Fakultas');
     }
 
     public function updateFakultas(){

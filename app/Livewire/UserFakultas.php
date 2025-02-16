@@ -36,7 +36,7 @@ class UserFakultas extends Component
     {
         return view('livewire.admin.pengguna.fakultas.user-fakultas')
         ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-        ->title('UNG Survey - Pengguna Fakultas');
+        ->title('UNG RTM - Pengguna Fakultas');
     }
 
     public function addUserFakultas()

@@ -27,7 +27,7 @@ class UserProfile extends Component
     {
         return view('livewire.profile-settings.user-profile')
         ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-        ->title('UNG Survey - User Profile');
+        ->title('UNG RTM - User Profile');
     }
 
     public function changePassword()

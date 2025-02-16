@@ -4,11 +4,11 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class MasterSurvei extends Component
+class MasterAkreditasi extends Component
 {
     public $showNavbar = true;
     public $showFooter = true;
-    public $master = 'Survei';
+    public $master = 'Akreditasi';
 
     // FIXME : TARO DISINI DATA COLLECTION
     public $dataMasterSurvei = [];
@@ -26,5 +26,3 @@ class MasterSurvei extends Component
     }
 
 }
-
-

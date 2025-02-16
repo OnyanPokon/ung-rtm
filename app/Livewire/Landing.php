@@ -13,6 +13,6 @@ class Landing extends Component
     {
         return view('livewire.landing.landing')
             ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-            ->title('UNG Survey - Landing');
+            ->title('UNG RTM - Landing');
     }
 }

@@ -14,7 +14,7 @@ class Auth extends Component
     {
         return view('livewire.auth.auth')
         ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar], ['showFooter' => $this->showFooter])
-        ->title('UNG Survey - Auth');
+        ->title('UNG RTM - Auth');
     }
     public function handleLogin(){
         // $this->validate([

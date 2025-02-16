@@ -14,6 +14,18 @@
         {
           "name": "Prodi",
           "link": "master_prodi"
+        },
+        {
+          "name": "Survei",
+          "link": "master_survei"
+        },
+        {
+          "name": "Audit",
+          "link": "master_audit"
+        },
+        {
+          "name": "Akreditasi",
+          "link": "master_akreditasi"
         }
       ]
     },

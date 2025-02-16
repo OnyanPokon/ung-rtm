@@ -49,7 +49,7 @@ class EditUserProdi extends Component
     {
         return view('livewire.admin.pengguna.prodi.edit-user-prodi')
             ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-            ->title('UNG Survey - User Prodi');
+            ->title('UNG RTM - User Prodi');
     }
 
     public function updateUserProdi()

@@ -39,7 +39,7 @@ class UserProdi extends Component
     {
         return view('livewire.admin.pengguna.prodi.user-prodi')
         ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-        ->title('UNG Survey - Pengguna Prodi');
+        ->title('UNG RTM - Pengguna Prodi');
     }
 
     public function getProdiByFakultas()

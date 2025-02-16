@@ -30,7 +30,7 @@ class EditProdi extends Component
     {
         return view('livewire.admin.master.prodi.edit-prodi')
         ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
-        ->title('UNG Survey - Master Prodi');
+        ->title('UNG RTM - Master Prodi');
     }
 
     public function updateProdi()

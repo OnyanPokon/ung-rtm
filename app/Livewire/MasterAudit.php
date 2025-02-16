@@ -4,11 +4,11 @@ namespace App\Livewire;
 
 use Livewire\Component;
 
-class MasterSurvei extends Component
+class MasterAudit extends Component
 {
     public $showNavbar = true;
     public $showFooter = true;
-    public $master = 'Survei';
+    public $master = 'Audit';
 
     // FIXME : TARO DISINI DATA COLLECTION
     public $dataMasterSurvei = [];
@@ -20,11 +20,9 @@ class MasterSurvei extends Component
 
     public function render()
     {
-        return view('livewire.admin.master.survei.master-survei')
+        return view('livewire.admin.master.audit.master-audit')
         ->layout('components.layouts.app', ['showNavbar' => $this->showNavbar, 'showFooter' => $this->showFooter])
         ->title('UNG RTM - Master Survei');
     }
 
 }
-
-
