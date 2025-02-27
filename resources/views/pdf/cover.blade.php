@@ -55,40 +55,34 @@
         }
 
         img {
-            width: 6rem;
+            width: 8rem;
             margin-top: 120px
         }
     </style>
 </head>
-
 <body>
     <div class="container" style="display: flex; justify-content: space-between; height: 100%;">
-        <div class="title-wrapper">
-            <div class="title">LAPORAN {{ $survei->name }}</div>
-            @if ($user->role->slug === 'fakultas')
-                <div class="title">{{ $user->fakultas->name}}</div>
-            @endif
-            @if ($user->role->slug === 'prodi')
-                <div class="title">FAKULTAS {{ $user->fakultas->name}}</div>
-                <div class="title">PRODI {{ $user->prodi->name}}</div>
-            @endif
-            <div class="title">UNIVERSITAS NEGERI GORONTALO</div>
-            <div class="title">Tahun {{ $tahunAkademik }}</div>
+        <div class="title-wrapper" style="margin-bottom: 120px">
+            <div class="title" >LAPORAN</div>
+            <div class="title">RAPAT TINJAUAN MANAJEMEN</div>
+            <div class="title">FAKULTAS TEKNIK</div>
+            <div class="title">TAHUN 2022/2023</div>
         </div>
-        <img class="logo" src="{{ public_path('logo/ung.png') }}" alt="Logo Universitas">
+        <img class="logo" src="{{ public_path('logo/ung.png') }}" alt="Logo Universitas" style="margin-bottom: 120px">
         <div class="subtitle-wrapper">
             <div class="subtitle">
-                LEMBAGA PENJAMINAN MUTU
+                UNIT PENJAMINAN MUTU
             </div>
             <div class="subtitle">
-                DAN PENGEMBANGAN PEMBELAJARAN
+                FAKULTAS TEKNIK
             </div>
             <div class="subtitle">
                 UNIVERSITAS NEGERI GORONTALO
             </div>
             <div class="subtitle">
-                {{ $tahunAkademik }}
+                2023
             </div>
+
         </div>
     </div>
 </body>

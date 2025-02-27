@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\Landing;
 use App\Livewire\Auth;
 use App\Livewire\Dashboard;
+use App\Livewire\DownloadDocument;
 use App\Livewire\MasterFakultas;
 use App\Livewire\EditFakultas;
 use App\Livewire\MasterProdi;
@@ -26,8 +27,11 @@ use App\Livewire\UserFakultas;
 use App\Livewire\UserProdi;
 use App\Livewire\EditUserProdi;
 use App\Livewire\EditUserFakultas;
+use App\Livewire\FakultasAudit;
 use App\Livewire\MasterAkreditasi;
 use App\Livewire\MasterAudit;
+use App\Livewire\MasterPeriodeAudit;
+use App\Livewire\MasterProdiAudit;
 use App\Livewire\MasterSurvei;
 use App\Livewire\UserProfile;
 
@@ -46,13 +50,20 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/edit_prodi/{id}', EditProdi::class)->name('edit_prodi');
     Route::get('/edit_prodi/{id}', EditProdi::class)->name('edit_prodi');
     Route::get('/master_survei', MasterSurvei::class)->name('master_survei');
-    Route::get('/master_audit', MasterAudit::class)->name('master_audit');
-    Route::get('/master_akreditasi', MasterAkreditasi::class)->name('master_akreditasi');
+
+    // Route::get('/master_periode_audit', MasterPeriodeAudit::class)->name('master_periode_audit');
+    // Route::get('/master_prodi_audit/{id_periode}', MasterProdiAudit::class)->name('master_prodi_audit');
+    // Route::get('/master_audit/{id_periode}/{id_prodi}', MasterAudit::class)->name('master_audit');
+
+    Route::get('/fakultas_audit', FakultasAudit::class)->name('fakultas_audit');
+    Route::get('/departement_audit/{id_fakultas}', FakultasAudit::class)->name('departement_audit');
     
+    Route::get('/download_document', DownloadDocument::class)->name('download_document');
+
+    Route::get('/master_akreditasi', MasterAkreditasi::class)->name('master_akreditasi');
+
     Route::get('/user_prodi', UserProdi::class)->name('user_prodi');
     Route::get('/edit_user_prodi/{id}', EditUserProdi::class)->name('edit_user_prodi');
     Route::get('/user_fakultas', UserFakultas::class)->name('user_fakultas');
     Route::get('/edit_user_fakultas/{id}', EditUserFakultas::class)->name('edit_user_fakultas');
-
-    
 });

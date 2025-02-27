@@ -74,8 +74,8 @@
 
         .paragraf {
             text-align: justify;
-            text-indent: 25px;
-            line-height: 2em;
+            text-indent: 18px;
+            line-height: 1.5em;
         }
 
         .number-list {
@@ -97,63 +97,129 @@
             width: 33.33%;
             text-align: center;
         }
+
+        h6 {
+            margin-bottom: 0px;
+        }
     </style>
 </head>
 
 <body>
     <h5 class="heading-1">
-        BAB I <br> <br>
-        PENDAHULUAN
+        LAPORAN
+        <br>
+        RAPAT TINJAUAN MANAJEMEN
+        <br>
+        TAHUN AKADEMIK 2022/2023
     </h5>
     <h6>
-        A. Latar Belakang
+        A. TUJUAN
     </h6>
     <p class="paragraf">
-        Sebagai sebuah unit penyelenggara pendidikan, Universitas Negeri Gorontalo dituntut untuk mampu memberikan
-        layanan yang berkualitas kepada para pengguna internal yaitu mahasiswa, dosen dan tenaga kependidikan serta
-        kepada pihak pengguna eksternal yaitu lulusan, pengguna lulusan dan mitra kerjasama.
+        Rapat Tinjauan Manajmen (RTM) Fakultas Teknik adalah pertemuan yang dilakukan
+        oleh pimpinan di lingkungan Fakultas Teknik secara periodik minimal 1 tahun sekali yang
+        merupakan implementasi pelaksanaan siklus SPMI yaitu siklus Pengendalian yang
+        bertujuan untuk mengevaluasi kinerja system secara menyeluruh. Namun pada kesempatan
+        ini RTM dilaksankan untuk menyampaian garis-garis besar hasil evaluasi pelaksanaan
+        penjaminan mutu di Fakultas Teknik UNG dintaranya akan membahas :
+
     </p>
     <p class="paragraf">
-        Kenyamanan civitas akademika sebagai pengguna internal tentu saja tidak terlepas dari layanan yang disediakan
-        oleh Universitas Negeri Gorontalo. Oleh karena itu, salah satu upaya untuk meningkatkan pelayanan adalah
-        mengukur tingkat kepuasan pengguna internal yang terdiri dari dosen, tenaga kependidikan dan mahasiswa.
+    <ul class="paragraf" style="list-style: disc">
+        <li class="paragraf">Hasil Audit Mutu Internal tahun 2022</li>
+        <li class="paragraf" style="margin-top: 8px">Hasil umpan balik dari stakeholder</li>
+    </ul>
     </p>
     <p class="paragraf">
-        Universitas Negeri Gorontalo merupakan kapal yang diciptakan untuk mengarungi peradaban manusia yang terus
-        berkembang dan berubah. Oleh karena itu, agar keberadaannya terus memberi manfaat, Universitas Negeri Gorontalo
-        terus melakukan perbaikan-perbaikan yang progresif dengan berlandaskan semangat Unggul dan Berdaya Saing.
+        Permasalahan manajemen system penjaminan mutu internal untuk meninjau kinerja system
+        manajemen mutu, dan kinerja pelayanan atau upaya Fakultas Teknik UNG guna memastikan
+        kelanjutan, kesesuaian, kecukupan, dan efektifitas system manajemen mutu.
+    </P>
+    <h6>
+        B. PELAKSANAAN
+    </h6>
+    <p>
+        Rapat Tinjauan Manajemen (RTM) dilaksanakan pada :
     </p>
-    <p class="paragraf">
-        Salah satu cara yang dilakukan Universitas Negeri Gorontalo untuk terus melakukan perbaikan adalah dengan
-        melakukan survei kepuasan pihak internal yaitu mahasiswa, dosen, dan tenaga kependidikan serta pengguna
-        eksternal yaitu alumni, pengguna alumni dan mitra kerjasama. Tujuan pelaksanaan survei adalah untuk mengetahui
-        tingkat kepuasan para pengguna internal dan eksternal tersebut dalam pelayanan yang sudah diberikan oleh
-        Universitas Negeri Gorontalo. Laporan hasil survei menjadi bahan untuk merumuskan kebijakan-kebijakan ke depan
-        yang lebih responsif terhadap kebutuhan. Hasil survei kepuasan internal dan eksternal ini juga menjadi
-        pertanggungjawaban dan informasi terkait layanan Universitas Negeri Gorontalo.
+    <table style="width: 100%;">
+        <tbody>
+            <tr style="width: 50%;">
+                <td style="width: 30%; vertical-align: top">Hari / Tanggal</td>
+                <td style="width: 5%; vertical-align: top">:</td>
+                <td style="width: 65%; vertical-align: top">Jum’at / 17 Maret 2023</td>
+            </tr>
+            <tr style="width: 50%;">
+                <td style="width: 30%; vertical-align: top">Waktu</td>
+                <td style="width: 5%; vertical-align: top">:</td>
+                <td style="width: 65%; vertical-align: top">08.30 – 11.30</td>
+            </tr>
+            <tr style="width: 50%;">
+                <td style="width: 30%; vertical-align: top">Tempat</td>
+                <td style="width: 5%; vertical-align: top">:</td>
+                <td style="width: 65%; vertical-align: top">Century Beach Resort</td>
+            </tr>
+            <tr style="width: 50%;">
+                <td style="width: 30%; vertical-align: top">Agenda Rapat</td>
+                <td style="width: 5%; vertical-align: top">:</td>
+                <td style="width: 65%; vertical-align: top">Hasil AMI 2022</td>
+            </tr>
+            <tr style="width: 50%;">
+                <td style="width: 30%; vertical-align: top">Pimpinan Rapat</td>
+                <td style="width: 5%; vertical-align: top">:</td>
+                <td style="width: 65%; vertical-align: top">Dekan</td>
+            </tr>
+            <tr style="width: 50%;">
+                <td style="width: 30%; vertical-align: top">Peserta</td>
+                <td style="width: 5%; vertical-align: top">:</td>
+                <td style="width: 65%; vertical-align: top">
+                    <ul style="list-style: disc">
+                        <li>Wakil Dekan</li>
+                        <li style="margin-top: 8px">Ketua Jurusan</li>
+                        <li style="margin-top: 8px">Sekretaris Jurusan</li>
+                        <li style="margin-top: 8px">Ketua Jurusan</li>
+                        <li style="margin-top: 8px">Ketua Jurusan</li>
+                        <li style="margin-top: 8px">Ketua Program Studi</li>
+                        <li style="margin-top: 8px">Kepala Laboratorium</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        Agenda Kegiatan :
     </p>
+    <ol class="paragraf">
+        <li class="paragraf">Pembukaan</li>
+        <li class="paragraf" style="margin-top: 8px">Doa</li>
+        <li class="paragraf" style="margin-top: 8px">Sambutan / arahan dari pimpinan</li>
+        <li class="paragraf" style="margin-top: 8px">Tinjauan terhadap Hasil RTM tahun lalu</li>
+        <li class="paragraf" style="margin-top: 8px">Pembahasan hasil audit mutu internal</li>
+    </ol>
+    <h6>
+        C. HASIL
+    </h6>
     <p class="paragraf">
-        Hasil survei kepuasan pengguna internal dan eksternal menjadi dasar yang penting untuk pembenahan pelayanan yang
-        dinilai masih kurang dan mempertahankan atau mengembangkan pelayanan yang sudah baik.
+    <ul class="paragraf" style="list-style: disc">
+        <li class="paragraf">RTM dihadiri 33 peserta termasuk yang mewakili seluruh UPPS</li>
+        <li class="paragraf" style="margin-top: 8px">Hasil kegiatan audit pada tahun 2022 </li>
+    </ul>
     </p>
     <h6>
-        B. Tujuan Kegiatan
+        D. KESIMPULAN
     </h6>
     <p class="paragraf">
-        Laporan kegiatan survei kepuasan Dosen bertujuan untuk: Mengetahui indeks kepuasan Dosen terhadap layanan yang
-        diberikan oleh Universitas Negeri Gorontalo.
+    <ul class="paragraf" style="list-style: disc">
+        <li class="paragraf">Seluruh hasil temuan audit dan permasalahan manajemen lainnya telah dipaparkan dan
+            telah ditunjuk penanggungjawab untuk melaksanakan tindak lanjut</li>
+        <li class="paragraf" style="margin-top: 8px">Setiap tindak lanjut akan dilaporkan kepada Dekan.</li>
+    </ul>
     </p>
     <h6>
-        C. Manfaat Kegiatan
+        E. PENUTUP
     </h6>
     <p class="paragraf">
-        Manfaat kegiatan ini adalah
-        <ul class="paragraf" style="list-style: disc">
-            <li class="paragraf">Menjadi tolok ukur untuk menilai tingkat kualitas pelayanan yang sudah diberikan oleh Universitas Negeri
-                Gorontalo. </li>
-            <li class="paragraf" style="margin-top: 12px">Menjadi bahan penilaian terhadap unsur pelayanan yang masih perlu dilakukan perbaikan dan menjadi
-                pendorong setiap unit penyelenggara pelayanan untuk meningkatkan kualitas pelayanannya. </li>
-        </ul>
+        Demikian laporan RTM tahun 2022 ini dibuat untuk digunakan sebagai data dukung dokumen
+        pelaksanaan SPMI untuk mencapai Visi Misi UNG
     </p>
 
 </body>

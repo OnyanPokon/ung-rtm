@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth as Login;
+use Webklex\PDFMerger\Facades\PDFMergerFacade as PDFMerger;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class Dashboard extends Component
 {
@@ -58,6 +60,34 @@ class Dashboard extends Component
                     ->title('UNG RTM - Jurusan Dashboard');
             default:
                 abort(403, 'Unauthorized');
+        }
+    }
+
+    public function downloadDocument()
+    {
+        $pdfMerger = PDFMerger::init();
+
+        $cover = PDF::loadView('pdf.cover')->setPaper('a4', 'potrait')->output();
+        $pdfMerger->addString($cover);
+
+        $lembaran_pengesahan = PDF::loadView('pdf.lembaran_pengesahan')->setPaper('a4', 'potrait')->output();
+        $pdfMerger->addString($lembaran_pengesahan);
+
+        $bab1 = PDF::loadView('pdf.bab1')->setPaper('a4', 'potrait')->output();
+        $pdfMerger->addString($bab1);
+
+        $lampiran = PDF::loadView('pdf.lampiran')->setPaper('a4', 'potrait')->output();
+        $pdfMerger->addString($lampiran);
+
+        $filePath = storage_path('app/public/Laporan_SURVEI_.pdf');
+        $pdfMerger->merge();
+        $pdfMerger->save($filePath);
+
+        // Cek apakah file berhasil dibuat
+        if (file_exists($filePath)) {
+            return response()->download($filePath);
+        } else {
+            return response()->json(['error' => 'Failed to generate PDF'], 500);
         }
     }
 }
