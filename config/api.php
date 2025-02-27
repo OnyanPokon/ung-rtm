@@ -1,5 +1,6 @@
 <?php
 
 return [
-    'base_url' => env('API_BASE_URL', 'http://127.0.0.1:8001/api/'),
+    'AMI' => env('AMI_API', 'http://127.0.0.1:8001/api/'),
+    'SUVEI' => env('SURVEI_API', 'http://127.0.0.1:8001/api/'),
 ];

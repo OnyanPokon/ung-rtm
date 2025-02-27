@@ -2,30 +2,22 @@
   "admin": [
     {
       "name": "Dashboard",
-      "link": "dashboard"
+      "link": "dashboard.index"
     },
     {
       "name": "Master",
       "link": [
         {
           "name": "Fakultas",
-          "link": "master_fakultas"
+          "link": "dashboard.master.fakultas.index"
         },
         {
           "name": "Prodi",
-          "link": "master_prodi"
+          "link": "dashboard.master.prodi.index"
         },
         {
-          "name": "Survei",
-          "link": "master_survei"
-        },
-        {
-          "name": "Audit",
-          "link": "fakultas_audit"
-        },
-        {
-          "name": "Akreditasi",
-          "link": "master_akreditasi"
+          "name": "RTM",
+          "link": "dashboard.master.rtm.index"
         }
       ]
     },

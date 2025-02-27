@@ -52,7 +52,7 @@
                                             Hapus
                                         </x-button>
                                         <x-button size="sm" color="info"
-                                            onclick="window.location.href='{{ route('departement_audit', $['id']) }}'">
+                                            onclick="window.location.href='{{ route('departement_audit', $fakultasAudit['id']) }}'">
                                             Dapartemen
                                         </x-button>
                                     </div>
