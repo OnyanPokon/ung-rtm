@@ -2,17 +2,16 @@
 
 namespace App\Services;
 
-use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
-use function PHPUnit\Framework\returnArgument;
+use PhpParser\Node\Stmt\TryCatch;
 
-class AmiService
+class SurveiService
 {
     protected $baseUrl;
 
     public function __construct()
     {
-        $this->baseUrl = config('api.AMI');
+        $this->baseUrl = config('api.SUVEI');
     }
 
     public function getAllFaculty()
@@ -26,16 +25,6 @@ class AmiService
         return null;
     }
 
-    public function getAnchor()
-    {
-        try {
-            $response = Http::get($this->baseUrl . 'periodes');
-            return $response->json();
-        } catch (\Throwable $th) {
-            return response()->json(['error' => 'Failed to fetch data', 'message' => $th->getMessage()], 500);
-        }
-    }
-
     public function getAllDepartement()
     {
         $response = Http::get($this->baseUrl . 'departements');
@@ -45,6 +34,16 @@ class AmiService
         }
 
         return null;
+    }
+
+    public function getAnchor()
+    {
+        try {
+            $response = Http::get($this->baseUrl . 'survey');
+            return $response->json();
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'Failed to fetch data', 'message' => $th->getMessage()], 500);
+        }
     }
 
     // public function getAllPeriode()

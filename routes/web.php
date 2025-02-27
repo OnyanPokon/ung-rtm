@@ -1,5 +1,6 @@
 <?php
 
+use App\Livewire\Admin\Master\Rtm\Index;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,15 +42,40 @@ Route::get('/login', Auth::class)->name('login');
 Route::get('/', Landing::class)->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', Dashboard::class)->name('dashboard');
-    Route::get('/user_profile', UserProfile::class)->name('user_profile');
+    Route::prefix('dashboard')->name('dashboard.')->group(function () {
+        Route::get('/', Dashboard::class)->name('index');
 
-    Route::get('/master_fakultas', MasterFakultas::class)->name('master_fakultas');
-    Route::get('/edit_fakultas/{id}', EditFakultas::class)->name('edit_fakultas');
-    Route::get('/master_prodi', MasterProdi::class)->name('master_prodi');
-    Route::get('/edit_prodi/{id}', EditProdi::class)->name('edit_prodi');
-    Route::get('/edit_prodi/{id}', EditProdi::class)->name('edit_prodi');
-    Route::get('/master_survei', MasterSurvei::class)->name('master_survei');
+        Route::prefix('master')->name('master.')->group(function () {
+            Route::prefix('fakultas')->name('fakultas.')->group(function () {
+                Route::get('/', MasterFakultas::class)->name('index');
+                Route::get('/edit/{id}', EditFakultas::class)->name('edit');
+            });
+
+            Route::prefix('prodi')->name('prodi.')->group(function () {
+                Route::get('/', MasterProdi::class)->name('index');
+                Route::get('/edit/{id}', EditProdi::class)->name('edit');
+            });
+
+            Route::prefix('rtm')->name('rtm.')->group(function () {
+                Route::get('/', action: Index::class)->name('index');
+            });
+
+            // Route::prefix('survei')->name('survei.')->group(function () {
+            //     Route::get('/', action: MasterSurvei::class)->name('index');
+
+            // });
+
+        });
+
+
+        Route::prefix('user')->name('user.')->group(function () {
+            Route::get('/profile', UserProfile::class)->name('profile');
+        });
+    });
+
+
+
+
 
     // Route::get('/master_periode_audit', MasterPeriodeAudit::class)->name('master_periode_audit');
     // Route::get('/master_prodi_audit/{id_periode}', MasterProdiAudit::class)->name('master_prodi_audit');
@@ -57,7 +83,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/fakultas_audit', FakultasAudit::class)->name('fakultas_audit');
     Route::get('/departement_audit/{id_fakultas}', FakultasAudit::class)->name('departement_audit');
-    
+
     Route::get('/download_document', DownloadDocument::class)->name('download_document');
 
     Route::get('/master_akreditasi', MasterAkreditasi::class)->name('master_akreditasi');

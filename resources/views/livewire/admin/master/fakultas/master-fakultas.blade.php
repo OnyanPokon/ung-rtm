@@ -113,7 +113,7 @@
                                 <div class="inline-flex gap-x-2">
                                     <!-- Edit button -->
                                     <x-button class="" color="info" size="sm"
-                                        onclick="window.location.href='{{ route('edit_fakultas' , $fakultas['id']) }}'">
+                                        onclick="window.location.href='{{ route('dashboard.master.fakultas.edit' , $fakultas['id']) }}'">
                                         Edit
                                     </x-button>
                                     <!-- Delete button (if needed) -->

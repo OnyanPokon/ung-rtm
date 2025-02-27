@@ -107,7 +107,7 @@
           class="absolute py-2 -left-24 bg-white rounded-md border text-neutral-700 border-neutral-200 shadow-md mt-2 w-36 z-10">
           <div class="w-full flex flex-col gap-y-1 text-sm font-semibold">
             <p class="py-2.5 px-4 w-full">{{ Auth::user()->role->name }}</p>
-            <a class="py-2.5 px-4 w-full hover:bg-neutral-100 hover:cursor-pointer " href="{{ route('user_profile') }}">
+            <a class="py-2.5 px-4 w-full hover:bg-neutral-100 hover:cursor-pointer " href="{{ route('dashboard.user.profile') }}">
               Profil
             </a>
             <p class="py-2.5 px-4 w-full hover:bg-neutral-100 hover:cursor-pointer text-color-danger-500" wire:click="handleLogout">
