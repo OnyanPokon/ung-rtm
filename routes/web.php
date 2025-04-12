@@ -1,8 +1,7 @@
 <?php
 
-use App\Livewire\Admin\Master\Rtm\Detail;
-use App\Livewire\Admin\Master\Rtm\Edit;
-use App\Livewire\Admin\Master\Rtm\Index;
+use App\Livewire\Admin\Master\Fakultas\Index as FakultasIndex;
+use App\Livewire\Admin\Master\Rtm\Index as RtmIndex;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,7 +48,7 @@ Route::middleware(['auth'])->group(function () {
 
         Route::prefix('master')->name('master.')->group(function () {
             Route::prefix('fakultas')->name('fakultas.')->group(function () {
-                Route::get('/', MasterFakultas::class)->name('index');
+                Route::get('/', FakultasIndex::class)->name('index');
                 Route::get('/edit/{id}', EditFakultas::class)->name('edit');
             });
 
@@ -59,15 +58,11 @@ Route::middleware(['auth'])->group(function () {
             });
 
             Route::prefix('rtm')->name('rtm.')->group(function () {
-                Route::get('/', action: Index::class)->name('index');
-                Route::get('/detail/{id}', action: Detail::class)->name('detail');
-                Route::get('/edit/{id}', action: Edit::class)->name('edit');
-                // Route::get('/download', action: Edit::class)->name('download');
+                Route::get('/', action: RtmIndex::class)->name('index');
             });
 
             // Route::prefix('survei')->name('survei.')->group(function () {
             //     Route::get('/', action: MasterSurvei::class)->name('index');
-
             // });
 
         });
@@ -77,8 +72,6 @@ Route::middleware(['auth'])->group(function () {
             Route::get('/profile', UserProfile::class)->name('profile');
         });
     });
-
-
 
 
 
