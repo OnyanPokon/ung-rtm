@@ -207,15 +207,22 @@
                                 </td>
                                 <td>
                                     <div class="inline-flex gap-x-2">
-                                        {{-- <x-button color="info" size="sm"
-                                            onclick="window.location.href='{{ route('dashboard.rtm.edit', $rtm['id']) }}'">
+                                        <x-button color="info" size="sm"
+                                            onclick="window.location.href='{{ route('dashboard.master.rtm.edit', $rtm['id']) }}'">
                                             Edit
                                         </x-button>
-                
+
+
+
                                         <x-button color="danger" size="sm"
                                             onclick="confirmDelete({{ $rtm['id'] }})">
                                             Hapus
-                                        </x-button> --}}
+                                        </x-button>
+
+                                        <x-button color="info" size="sm"
+                                            onclick="window.location.href='{{ route('dashboard.master.rtm.detail', $rtm['id']) }}'">
+                                            Detail
+                                        </x-button>
                                     </div>
                                 </td>
                             </tr>

@@ -46,6 +46,24 @@ class SurveiService
         }
     }
 
+    public function getSurveyDetail($id, $fakultas, $prodi)
+    {
+        try {
+            $queryParams = [];
+
+            if ($prodi) {
+                $queryParams['prodi_id'] = $prodi;
+            }
+            if ($fakultas) {
+                $queryParams['fakultas_id'] = $fakultas;
+            }
+            $response = Http::get($this->baseUrl . 'survey/'. $id.'/detail', $queryParams);
+            return $response->json();
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'Failed to fetch data', 'message' => $th->getMessage()], 500);
+        }
+    }
+
     // public function getAllPeriode()
     // {
     //     $response = Http::get($this->baseUrl . 'periodes');

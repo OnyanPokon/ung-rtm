@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Admin\Master\Rtm\Detail;
+use App\Livewire\Admin\Master\Rtm\Edit;
 use App\Livewire\Admin\Master\Rtm\Index;
 use Illuminate\Support\Facades\Route;
 
@@ -58,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
 
             Route::prefix('rtm')->name('rtm.')->group(function () {
                 Route::get('/', action: Index::class)->name('index');
+                Route::get('/detail/{id}', action: Detail::class)->name('detail');
+                Route::get('/edit/{id}', action: Edit::class)->name('edit');
+                // Route::get('/download', action: Edit::class)->name('download');
             });
 
             // Route::prefix('survei')->name('survei.')->group(function () {

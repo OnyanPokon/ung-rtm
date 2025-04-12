@@ -4,6 +4,7 @@ namespace App\Services;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Http;
+use PhpParser\Node\Stmt\TryCatch;
 use function PHPUnit\Framework\returnArgument;
 
 class AmiService
@@ -30,6 +31,16 @@ class AmiService
     {
         try {
             $response = Http::get($this->baseUrl . 'periodes');
+            return $response->json();
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'Failed to fetch data', 'message' => $th->getMessage()], 500);
+        }
+    }
+
+    public function getDetail($id)
+    {
+        try {
+            $response = Http::get($this->baseUrl . 'periodes/'.$id);
             return $response->json();
         } catch (\Throwable $th) {
             return response()->json(['error' => 'Failed to fetch data', 'message' => $th->getMessage()], 500);
