@@ -18,7 +18,6 @@ class Index extends Component
     //CURRENT ATTRIBUTE
     public $anchor_ami = [];
     public $anchor_survei = [];
-    public $anchor_akreditas = [];
 
     public $rtm = [
         'name' => '',
@@ -28,24 +27,10 @@ class Index extends Component
         'akreditas_anchor' => [],
     ];
 
-
-    public $rtmReport = [
-        'ketua_upm' => '',
-        'dekan' => '',
-        'lampiran' => '',
-        'pemimpin_rapat' => '',
-        'notulis' => '',
-        'tanggal_pelaksanaan' => '',
-        'waktu_pelaksanaan' => '',
-        'tempat_pelaksanaan' => '',
-        'agenda' => '',
-        'peserta' => ''
-    ];
-
     public function mount(AmiService $amiService, SurveiService $surveiService)
     {
-        // $this->anchor_ami = $amiService->getAnchor()['data'];
-        // $this->anchor_survei = $surveiService->getAnchor()['data'];
+        $this->anchor_ami = $amiService->getAnchor()['data'];
+        $this->anchor_survei = $surveiService->getAnchor()['data'];
         $this->data = RTM::all();
     }
 
@@ -63,42 +48,19 @@ class Index extends Component
             'rtm.tahun' => 'required|integer',
             'rtm.ami_anchor' => 'array',
             'rtm.survei_anchor' => 'array',
-            'rtm.akreditas_anchor' => 'array',
         ]);
 
-        RTM::create($this->rtm);
+        // Create RTM record
+        RTM::create([
+            'name' => $this->rtm['name'],
+            'tahun' => $this->rtm['tahun'],
+            'ami_anchor' => $this->rtm['ami_anchor'],
+            'survei_anchor' => $this->rtm['survei_anchor'],
+        ]);
 
         session()->flash('toastMessage', 'RTM berhasil ditambahkan!');
         session()->flash('toastType', 'success');
 
         return redirect()->route('dashboard.master.rtm.index');
-    }
-
-    public function downloadDocument()
-    {
-        $pdfMerger = PDFMerger::init();
-
-        $cover = PDF::loadView('pdf.cover')->setPaper('a4', 'potrait')->output();
-        $pdfMerger->addString($cover);
-
-        $lembaran_pengesahan = PDF::loadView('pdf.lembaran_pengesahan')->setPaper('a4', 'potrait')->output();
-        $pdfMerger->addString($lembaran_pengesahan);
-
-        $bab1 = PDF::loadView('pdf.bab1')->setPaper('a4', 'potrait')->output();
-        $pdfMerger->addString($bab1);
-
-        $lampiran = PDF::loadView('pdf.lampiran')->setPaper('a4', 'potrait')->output();
-        $pdfMerger->addString($lampiran);
-
-        $filePath = storage_path('app/public/Laporan_SURVEI_.pdf');
-        $pdfMerger->merge();
-        $pdfMerger->save($filePath);
-
-        // Cek apakah file berhasil dibuat
-        if (file_exists($filePath)) {
-            return response()->download($filePath);
-        } else {
-            return response()->json(['error' => 'Failed to generate PDF'], 500);
-        }
     }
 }

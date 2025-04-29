@@ -7,6 +7,7 @@ use App\Models\Fakultas;
 use App\Services\AmiService;
 use App\Services\SurveiService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class Index extends Component
 {
@@ -14,27 +15,46 @@ class Index extends Component
     public $showFooter = true;
     public $master = 'Fakultas';
 
-    public $anchor_ami = [];
-    public $anchor_survei = [];
+    public $ami_faculties = [];
+    public $survei_faculties = [];
     public $anchor_akreditas = [];
 
     public $fakultas = [
         'nama' => '',
         'kode' => '',
-        'ami_anchor' => [],
-        'survei_anchor' => [],
-        'akreditas_anchor' => [],
+        'ami' => '',
+        'survei' => '',
+        'akreditasi' => '',
     ];
 
     public $dataFakultas;
     public $toastMessage = '';
     public $toastType = '';
 
-    public function mount()
+    public function mount(AmiService $amiService, SurveiService $surveiService)
     {
-        // Dekode data JSON
-         // $this->anchor_ami = $amiService->getAnchor()['data'];
-        // $this->anchor_survei = $surveiService->getAnchor()['data'];
+        // Get faculty data from AMI and Survei services
+        $amiFacultyData = $amiService->getAllFaculty();
+        if ($amiFacultyData && isset($amiFacultyData['data'])) {
+            $this->ami_faculties = $amiFacultyData['data'];
+            
+            // Log the first faculty structure to debug
+            if (!empty($this->ami_faculties) && isset($this->ami_faculties[0])) {
+                Log::info('AMI Faculty Structure:', $this->ami_faculties[0]);
+            }
+        }
+        
+        $surveiFacultyData = $surveiService->getAllFaculty();
+        if ($surveiFacultyData && isset($surveiFacultyData['data'])) {
+            $this->survei_faculties = $surveiFacultyData['data'];
+            
+            // Log the first faculty structure to debug
+            if (!empty($this->survei_faculties) && isset($this->survei_faculties[0])) {
+                Log::info('Survei Faculty Structure:', $this->survei_faculties[0]);
+            }
+        }
+
+        // Get local faculty data
         $this->dataFakultas = Fakultas::all();
     }
 
@@ -50,6 +70,9 @@ class Index extends Component
         $this->validate([
             'fakultas.nama' => 'required|string|max:255',
             'fakultas.kode' => 'required|string|max:10|unique:fakultas,code',
+            'fakultas.ami' => 'nullable|string',
+            'fakultas.survei' => 'nullable|string',
+            'fakultas.akreditasi' => 'nullable|string',
         ]);
 
         try {
@@ -58,6 +81,9 @@ class Index extends Component
             Fakultas::create([
                 'name' => $this->fakultas['nama'],
                 'code' => $this->fakultas['kode'],
+                'ami' => $this->fakultas['ami'],
+                'survei' => $this->fakultas['survei'],
+                'akreditasi' => $this->fakultas['akreditasi'],
             ]);
 
             DB::commit();
@@ -71,7 +97,7 @@ class Index extends Component
             session()->flash('toastType', 'error');
         }
 
-        return redirect()->to('master_fakultas');
+        return redirect()->route('dashboard.master.fakultas.index');
     }
 
     public function deleteFakultas($id)
@@ -92,6 +118,6 @@ class Index extends Component
             session()->flash('toastType', 'error');
         }
 
-        return redirect()->to('master_fakultas');
+        return redirect()->route('dashboard.master.fakultas.index');
     }
 }

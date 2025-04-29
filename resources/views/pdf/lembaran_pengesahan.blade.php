@@ -114,22 +114,20 @@
         <table style="width: 100%;">
             <tbody>
                 <tr style="width: 50%;">
-                    <td style="width: 50%; text-align: center">Ketua UPM Fakultas Teknik</td>
-                    <td style="width: 50%;  text-align: center">Dekan Fakultas Teknik UNG</td>
+                    <td style="width: 50%; text-align: center">{{ $reportData['mengetahui1_jabatan'] }}</td>
+                    <td style="width: 50%;  text-align: center">{{ $reportData['mengetahui2_jabatan'] }}</td>
                 </tr>
                 <tr style="width: 50%;">
                     <td style="padding: 3rem 0; width: 50%;"></td>
                     <td style="padding: 3rem 0; width: 50%;"></td>
                 </tr>
                 <tr style="width: 50%;">
-                    <td style="width: 50%;  text-align: center; font-weight: bold; text-decoration: underline">Sartika
-                        Dewi Usman, ST.,MT</td>
-                    <td style="width: 50%;  text-align: center; font-weight: bold; text-decoration: underline">Dr. Sardi
-                        Salim, M.Pd</td>
+                    <td style="width: 50%;  text-align: center; font-weight: bold; text-decoration: underline">{{$reportData['mengetahui1_nama']}}</td>
+                    <td style="width: 50%;  text-align: center; font-weight: bold; text-decoration: underline">{{$reportData['mengetahui2_nama']}}</td>
                 </tr>
                 <tr style="width: 50%;">
-                    <td style="width: 50%;  text-align: center"> NIP. 19851228 201903 2011</td>
-                    <td style="width: 50%;  text-align: center">NIP. 196807051997021001</td>
+                    <td style="width: 50%;  text-align: center"> NIP. {{$reportData['mengetahui1_nip']}}</td>
+                    <td style="width: 50%;  text-align: center">NIP. {{$reportData['mengetahui2_nip']}}</td>
                 </tr>
             </tbody>
         </table>

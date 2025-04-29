@@ -20,13 +20,5 @@ class RoleSeeder extends Seeder
         Role::create([
             'name' => 'Fakultas',
         ]);
-
-        Role::create([
-            'name' => 'Jurusan',
-        ]);
-
-        Role::create([
-            'name' => 'prodi',
-        ]);
     }
 }

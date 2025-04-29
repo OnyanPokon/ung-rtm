@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('r_t_m_s', function (Blueprint $table) { // Perbaiki nama tabel ke 'rtms'
+        Schema::create('rtms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('tahun');

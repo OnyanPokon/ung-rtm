@@ -22,7 +22,7 @@
             <span><i class="fas fa-times"></i></span>
         </button>
     </div>
-    <section class="max-w-screen-xl w-full mx-auto px-4 pt-24" x-data="{ addModal: false, rtmReport: false }">
+    <section class="max-w-screen-xl w-full mx-auto px-4 pt-24" x-data="{ addModal: false }">
 
         <div
             class="mt-4 p-6 bg-white flex flex-col lg:flex-row lg:items-center gap-y-2 justify-between rounded-lg border border-slate-100 shadow-sm">
@@ -34,9 +34,6 @@
             <div>
                 <x-button class="" color="info" size="sm" @click="addModal = !addModal">
                     Tambah {{ $master }}
-                </x-button>
-                <x-button class="" color="info" size="sm" @click="rtmReport = !rtmReport">
-                    Laporan {{ $master }}
                 </x-button>
             </div>
         </div>
@@ -86,12 +83,13 @@
                             <!-- AMI Anchor -->
                             <div class="flex flex-col gap-y-2 col-span-12 mb-4">
                                 <label for="ami_anchor" class="text-sm">AMI:</label>
-                                <select multiple id="ami_anchor" name="ami_anchor" wire:model="rtm.ami_anchor"
-                                    class="multi-select p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
+                                <div wire:ignore>
+                                    <select multiple id="ami_anchor" class="multi-select p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
                                     @foreach ($anchor_ami as $anchor)
                                         <option value="{{ $anchor['id'] }}">{{ $anchor['periode_name'] }}</option>
                                     @endforeach
                                 </select>
+                                </div>
                                 @error('rtm.ami_anchor')
                                     <span class="text-red-500 text-xs">{{ $message }}</span>
                                 @enderror
@@ -99,149 +97,20 @@
 
                             <div class="flex flex-col gap-y-2 col-span-12 mb-4">
                                 <label for="survei_anchor" class="text-sm">Survei:</label>
-                                <select multiple id="survei_anchor" name="survei_anchor" wire:model="rtm.survei_anchor"
-                                    class="multi-select p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
+                                <div wire:ignore>
+                                    <select multiple id="survei_anchor" class="multi-select p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
                                     @foreach ($anchor_survei as $anchor)
                                         <option value="{{ $anchor['id'] }}">{{ $anchor['name'] }}</option>
                                     @endforeach
                                 </select>
+                                </div>
                                 @error('rtm.survei_anchor')
                                     <span class="text-red-500 text-xs">{{ $message }}</span>
                                 @enderror
                             </div>
 
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="akreditas_anchor" class="text-sm">Akreditasi:</label>
-                                <select multiple id="akreditas_anchor" name="akreditas_anchor"
-                                    wire:model="rtm.akreditas_anchor"
-                                    class="multi-select p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
-                                    {{-- <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option> --}}
-                                </select>
-                                @error('rtm.akreditas_anchor')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-
                             <x-button class="inline-flex items-center w-fit gap-x-2 col-span-12" color="info"
-                                type="submit">
-                                <span wire:loading.remove><i class="fas fa-plus"></i></span>
-                                <span wire:loading class="animate-spin"><i class="fas fa-circle-notch"></i></span>
-                                Tambah RTM
-                            </x-button>
-                        </form>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div x-show="rtmReport" style="display: none" x-on:keydown.escape.window="rtmReport = false"
-            class="overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-full max-h-full bg-black/20">
-            <div class="relative p-4 w-full max-w-2xl max-h-full" @click.outside="addModal = false">
-                <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow ">
-                    <!-- Modal header -->
-                    <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t ">
-                        <h3 class="text-lg font-bold text-gray-900 ">
-                            Tambah Data {{ $master }}
-                        </h3>
-                        <button type="button" @click="rtmReport = false"
-                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
-                            data-modal-hide="default-modal">
-                            <span>
-                                <i class="fas fa-times"></i>
-                            </span>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                    </div>
-                    <!-- Modal body -->
-                    <div class="p-4 md:p-5 space-y-4">
-                        <form wire:submit.prevent="submit" class="grid grid-cols-12 p-2">
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="ketua_upm" class="text-sm">Ketua UPM:</label>
-                                <input type="text" id="ketua_upm" name="ketua_upm" wire:model="rtmReport.ketua_upm"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.ketua_upm')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="dekan" class="text-sm">Dekan:</label>
-                                <input type="text" id="dekan" name="dekan" wire:model="rtmReport.dekan"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.dekan')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="lampiran" class="text-sm">Lampiran:</label>
-                                <input type="file" id="lampiran" name="lampiran" wire:model="rtmReport.lampiran"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.lampiran')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="pemimpin_rapat" class="text-sm">Pemimpin Rapat:</label>
-                                <input type="text" id="pemimpin_rapat" name="pemimpin_rapat" wire:model="rtmReport.pemimpin_rapat"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.pemimpin_rapat')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="notulis" class="text-sm">Notulis:</label>
-                                <input type="text" id="notulis" name="notulis" wire:model="rtmReport.notulis"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.notulis')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="tanggal_pelaksanaan" class="text-sm">Tanggal Pelaksanaan:</label>
-                                <input type="date" id="tanggal_pelaksanaan" name="tanggal_pelaksanaan" wire:model="rtmReport.tanggal_pelaksanaan"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.tanggal_pelaksanaan')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="waktu_pelaksanaan" class="text-sm">Waktu Pelaksanaan:</label>
-                                <input type="datetime" id="waktu_pelaksanaan" name="waktu_pelaksanaan" wire:model="rtmReport.waktu_pelaksanaan"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.waktu_pelaksanaan')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="tempat_pelaksanaan" class="text-sm">Tempat Pelaksanaan:</label>
-                                <input type="text" id="tempat_pelaksanaan" name="tempat_pelaksanaan" wire:model="rtmReport.tempat_pelaksanaan"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.tempat_pelaksanaan')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-                            <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="peserta" class="text-sm">Peserta:</label>
-                                <input type="text" id="peserta" name="peserta" wire:model="rtmReport.peserta"
-                                    placeholder="Masukkan Nama RTM"
-                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 focus:outline-none focus:ring-color-info-500 border border-neutral-200">
-                                @error('rtmReport.peserta')
-                                    <span class="text-red-500 text-xs">{{ $message }}</span>
-                                @enderror
-                            </div>
-
-                            <x-button class="inline-flex items-center w-fit gap-x-2 col-span-12" color="info"
-                                type="submit">
+                                type="submit" id="submitBtn">
                                 <span wire:loading.remove><i class="fas fa-plus"></i></span>
                                 <span wire:loading class="animate-spin"><i class="fas fa-circle-notch"></i></span>
                                 Tambah RTM
@@ -264,7 +133,6 @@
                             <th>Tahun</th>
                             <th>AMI</th>
                             <th>Survei</th>
-                            <th>Akreditasi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -307,36 +175,21 @@
                                     @endif
                                 </td>
                                 <td>
-                                    @if (!empty($rtm['akreditas_anchor']))
-                                        <ul class="list-disc pl-4">
-                                            @foreach ($rtm['akreditas_anchor'] as $anchor)
-                                                @php
-                                                    $matchedAnchor = collect($anchor_ami)->firstWhere(
-                                                        'id',
-                                                        (int) $anchor,
-                                                    );
-                                                @endphp
-                                                <li>{{ $matchedAnchor['periode_name'] ?? '-' }}</li>
-                                            @endforeach
-                                        </ul>
-                                    @else
-                                        -
-                                    @endif
-
-                                </td>
-                                <td>
                                     <div class="inline-flex gap-x-2">
                                         <x-button color="info" size="sm"
                                             onclick="window.location.href='{{ route('dashboard.master.rtm.edit', $rtm['id']) }}'">
                                             Edit
                                         </x-button>
 
-
+                                        <x-button color="success" size="sm"
+                                            onclick="window.location.href='{{ route('dashboard.master.rtm.detail', $rtm['id']) }}'">
+                                            Detail
+                                        </x-button>
 
                                         <x-button color="danger" size="sm"
                                             onclick="confirmDelete({{ $rtm['id'] }})">
                                             Hapus
-                                        </x-button> --}}
+                                        </x-button> 
                                     </div> 
                                 </td>
                             </tr>
@@ -365,11 +218,25 @@
         <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
         <script>
             document.addEventListener("DOMContentLoaded", () => {
-                const elements = document.querySelectorAll('.multi-select');
-                elements.forEach(el => new Choices(el, {
+                // Initialize Choices.js
+                const amiChoices = new Choices('#ami_anchor', {
                     removeItemButton: true,
                     allowHTML: true
-                }));
+                });
+                
+                const surveiChoices = new Choices('#survei_anchor', {
+                    removeItemButton: true,
+                    allowHTML: true
+                });
+                
+                // Set Livewire data on form submission
+                document.getElementById('submitBtn').addEventListener('click', function() {
+                    const amiValues = amiChoices.getValue().map(item => item.value);
+                    const surveiValues = surveiChoices.getValue().map(item => item.value);
+                    
+                    @this.set('rtm.ami_anchor', amiValues);
+                    @this.set('rtm.survei_anchor', surveiValues);
+                });
             });
         </script>
     @endpush

@@ -20,18 +20,12 @@ class FakultasSeeder extends Seeder
             [
                 'name' => 'Fakultas Teknik',
                 'code' => 'FT',
-                'prodi' => [
-                    ['name' => 'Teknik Sipil', 'jenjang' => 'S1'],
-                    ['name' => 'Teknik Elektro', 'jenjang' => 'S1'],
-                ],
+               
             ],
             [
                 'name' => 'Fakultas Ekonomi',
                 'code' => 'FE',
-                'prodi' => [
-                    ['name' => 'Manajemen', 'jenjang' => 'S1'],
-                    ['name' => 'Akuntansi', 'jenjang' => 'S1'],
-                ],
+                
             ],
         ];
 
@@ -41,14 +35,8 @@ class FakultasSeeder extends Seeder
             'code' => '0',
         ]);
 
-        $prodiTidakAda = Prodi::create([
-            'name' => 'Tidak Ada',
-            'code' => '0',
-            'fakultas_id' => $fakultasTidakAda->id,
-        ]);
-
+     
         // Retrieve roles
-        $prodiRole = Role::where('slug', 'prodi')->first();
         $fakultasRole = Role::where('slug', 'fakultas')->first();
 
         foreach ($fakultasData as $fakultas) {
@@ -64,26 +52,8 @@ class FakultasSeeder extends Seeder
                 'password' => bcrypt($fakultas['name']),
                 'role_id' => $fakultasRole->id,
                 'fakultas_id' => $newFakultas->id,
-                'prodi_id' => $prodiTidakAda->id,
             ]);
 
-            foreach ($fakultas['prodi'] as $prodi) {
-                $newProdi = Prodi::create([
-                    'name' => $prodi['jenjang'] . '-' . $prodi['name'],
-                    'code' => Str::slug($prodi['jenjang'] . '-' . $prodi['name']),
-                    'fakultas_id' => $newFakultas->id,
-                ]);
-
-                // Create a user with Prodi role
-                User::create([
-                    'name' => $prodi['jenjang'] . '-' . $prodi['name'],
-                    'email' => strtolower($prodi['jenjang'] . '-' . $prodi['name']) . '@gmail.com',
-                    'password' => bcrypt($prodi['jenjang'] . '-' . $prodi['name']),
-                    'role_id' => $prodiRole->id,
-                    'fakultas_id' => $fakultasTidakAda->id,
-                    'prodi_id' => $newProdi->id,
-                ]);
-            }
         }
     }
 }

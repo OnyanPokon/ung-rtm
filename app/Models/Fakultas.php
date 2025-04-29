@@ -11,6 +11,9 @@ class Fakultas extends Model
     protected $fillable = [
         'name',
         'code',
+        'ami',
+        'survei',
+        'akreditasi',
     ];
 
     public function prodi()

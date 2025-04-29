@@ -27,6 +27,16 @@ class AmiService
         return null;
     }
 
+    public function getAmi($id, $fakultasId)
+    {
+        $response = Http::get($this->baseUrl . 'ami/' . $id . '/' . $fakultasId);
+        if ($response->successful()) {
+            return $response->json();
+        }
+
+        return null;
+    }
+
     public function getAnchor()
     {
         try {
@@ -40,7 +50,7 @@ class AmiService
     public function getDetail($id)
     {
         try {
-            $response = Http::get($this->baseUrl . 'periodes/'.$id);
+            $response = Http::get($this->baseUrl . 'periodes/' . $id);
             return $response->json();
         } catch (\Throwable $th) {
             return response()->json(['error' => 'Failed to fetch data', 'message' => $th->getMessage()], 500);

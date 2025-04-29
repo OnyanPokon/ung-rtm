@@ -4,6 +4,8 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Fakultas;
+use App\Services\AmiService;
+use App\Services\SurveiService;
 use Illuminate\Support\Facades\DB;
 
 class MasterFakultas extends Component
@@ -15,16 +17,33 @@ class MasterFakultas extends Component
     public $fakultas = [
         'nama' => '',
         'kode' => '',
+        'ami' => '',
+        'survei' => '',
+        'akreditasi' => '',
     ];
 
     public $dataFakultas;
+    public $amiFakultasOptions = [];
+    public $surveiFakultasOptions = [];
     public $toastMessage = '';
     public $toastType = '';
 
-    public function mount()
+    public function mount(AmiService $amiService, SurveiService $surveiService)
     {
-        // Dekode data JSON
+        // Get fakultas data
         $this->dataFakultas = Fakultas::all();
+        
+        // Get options for ami dropdown from AMI service
+        $amiData = $amiService->getAllFaculty();
+        if ($amiData) {
+            $this->amiFakultasOptions = $amiData['data'] ?? [];
+        }
+        
+        // Get options for survei dropdown from Survei service
+        $surveiData = $surveiService->getAllFaculty();
+        if ($surveiData) {
+            $this->surveiFakultasOptions = $surveiData['data'] ?? [];
+        }
     }
 
     public function render()
@@ -39,6 +58,9 @@ class MasterFakultas extends Component
         $this->validate([
             'fakultas.nama' => 'required|string|max:255',
             'fakultas.kode' => 'required|string|max:10|unique:fakultas,code',
+            'fakultas.ami' => 'nullable|string',
+            'fakultas.survei' => 'nullable|string',
+            'fakultas.akreditasi' => 'nullable|string',
         ]);
         
         try {
@@ -47,6 +69,9 @@ class MasterFakultas extends Component
             Fakultas::create([
                 'name' => $this->fakultas['nama'],
                 'code' => $this->fakultas['kode'],
+                'ami' => $this->fakultas['ami'],
+                'survei' => $this->fakultas['survei'],
+                'akreditasi' => $this->fakultas['akreditasi'],
             ]);
 
             DB::commit();
@@ -85,5 +110,4 @@ class MasterFakultas extends Component
 
         return redirect()->to('master_fakultas');
     }
-
 }

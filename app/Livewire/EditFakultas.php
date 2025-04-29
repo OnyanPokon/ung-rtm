@@ -4,7 +4,10 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\Fakultas;
+use App\Services\AmiService;
+use App\Services\SurveiService;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 
 class EditFakultas extends Component
@@ -14,13 +17,37 @@ class EditFakultas extends Component
     public $master = 'Fakultas';
 
     public $fakultas = [];
+    public $ami_faculties = [];
+    public $survei_faculties = [];
 
-    public function mount($id)
+    public function mount($id, AmiService $amiService, SurveiService $surveiService)
     {
         // Fetch fakultas data by ID from the model
         $fakultas = Fakultas::findOrFail($id);
         // Assign all data to the fakultas property
         $this->fakultas = $fakultas->toArray();
+
+        // Get faculty data from AMI service
+        $amiFacultyData = $amiService->getAllFaculty();
+        if ($amiFacultyData && isset($amiFacultyData['data'])) {
+            $this->ami_faculties = $amiFacultyData['data'];
+            
+            // Log the first faculty structure to debug
+            if (!empty($this->ami_faculties) && isset($this->ami_faculties[0])) {
+                Log::info('AMI Faculty Structure (Edit):', $this->ami_faculties[0]);
+            }
+        }
+        
+        // Get faculty data from Survei service
+        $surveiFacultyData = $surveiService->getAllFaculty();
+        if ($surveiFacultyData && isset($surveiFacultyData['data'])) {
+            $this->survei_faculties = $surveiFacultyData['data'];
+            
+            // Log the first faculty structure to debug
+            if (!empty($this->survei_faculties) && isset($this->survei_faculties[0])) {
+                Log::info('Survei Faculty Structure (Edit):', $this->survei_faculties[0]);
+            }
+        }
     }
 
     public function render()
@@ -37,6 +64,9 @@ class EditFakultas extends Component
         $this->validate([
             'fakultas.name' => 'required|string|max:255',
             'fakultas.code' => 'required|string|max:10|unique:fakultas,code,' . $this->fakultas['id'],
+            'fakultas.ami' => 'nullable|string',
+            'fakultas.survei' => 'nullable|string',
+            'fakultas.akreditasi' => 'nullable|string',
         ]);
 
         try
@@ -57,13 +87,12 @@ class EditFakultas extends Component
             session()->flash('toastType', 'error');
         }
        
-
-        return redirect()->to('master_fakultas');
+        return redirect()->route('dashboard.master.fakultas.index');
     }
 
     public function redirectToAdd()
     {
-        return redirect()->to('master_fakultas');
+        return redirect()->route('dashboard.master.fakultas.index');
     }
 
 }

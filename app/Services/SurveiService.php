@@ -83,4 +83,15 @@ class SurveiService
     //     }
     //     return null;  
     // }
+
+    public function getSurvei($id, $fakultasId)
+    {
+        $response = Http::get($this->baseUrl . 'survei/' . $id . '/' . $fakultasId);
+        if ($response->successful()) {
+            return $response->json();
+        }
+
+        return null;
+    }
+
 }

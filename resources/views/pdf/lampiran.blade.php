@@ -139,32 +139,32 @@
                 <th>Target Penyelesaian</th>
             </tr>
             <tr>
-           
                 <th>PTP</th>
                 <th>KTS</th>
                 <th>OBS</th>
-               <th></th>
-               <th></th>
-               <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td style="text-align: center">I</td>
-                <td colspan="7">Standar Pendidikan</td>
-            </tr>
-            <tr>
-                <td style="text-align: center">1</td>
-                <td>Dokumen kurikulum Prodi belum semua disusun sesuai format/Panduan KPT (Kurikulum PerguruanTinggi)
-                    yang mendukung MBKM</td>
-                <td>Segera dilakukan workshop pemutahiran kurikulum pada masing-masing Program Studi</td>
-                <td>Bulan Juli tahun 2023 </td>
-                <td>UPPS Kaprodi</td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-
+            @foreach ($ami as $index => $items)
+                <tr>
+                    <td colspan="8" style="font-weight: bold; background-color: #f2f2f2">{{ $index }}</td>
+                </tr>
+                @foreach ($items as $indicator)
+                    <tr>
+                        <td style="text-align: center">{{ $indicator['code'] }}</td>
+                        <td>{{ $indicator['desc'] }}</td>
+                        <td>{{ $indicator['ptp'] }}</td>
+                        <td>{{ $indicator['kts'] }}</td>
+                        <td>{{ $indicator['obs'] }}</td>
+                        <td>{{ $indicator['score'] }}%</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                @endforeach
+            @endforeach
         </tbody>
     </table>
 </body>

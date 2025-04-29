@@ -23,7 +23,6 @@
         </button>
     </div>
     <section class="max-w-screen-xl w-full mx-auto px-4 pt-24" x-data="{ addModal: false }">
-
         <div
             class="mt-4 p-6 bg-white flex flex-col lg:flex-row lg:items-center gap-y-2 justify-between rounded-lg border border-slate-100 shadow-sm">
             <div>
@@ -78,44 +77,49 @@
                                     <span class="text-red-500 text-xs">{{ $message }}</span>
                                 @enderror
                             </div>
-                            <!-- AMI Anchor -->
+                            <!-- AMI dropdown -->
                             <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="ami_anchor" class="text-sm">AMI:</label>
-                                <select multiple id="ami_anchor" name="ami_anchor" wire:model="fakultas.ami_anchor"
-                                    class="multi-select p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
-                                    @foreach ($anchor_ami as $anchor)
-                                        <option value="{{ $anchor['id'] }}">{{ $anchor['periode_name'] }}</option>
+                                <label for="ami" class="text-sm">ID AMI:</label>
+                                <select id="ami" name="ami" wire:model="fakultas.ami"
+                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
+                                    <option value="">Pilih ID AMI</option>
+                                    @foreach ($ami_faculties as $faculty)
+                                        <option value="{{ $faculty['id'] }}">{{ $faculty['department_name'] ?? 'Fakultas ID: '.$faculty['id'] }}</option>
                                     @endforeach
                                 </select>
-                                @error('fakultas.ami_anchor')
+                                @error('fakultas.ami')
                                     <span class="text-red-500 text-xs">{{ $message }}</span>
                                 @enderror
                             </div>
 
+                            <!-- Survei dropdown -->
                             <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="survei_anchor" class="text-sm">Survei:</label>
-                                <select multiple id="survei_anchor" name="survei_anchor"
-                                    wire:model="fakultas.survei_anchor"
-                                    class="multi-select p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
-                                    @foreach ($anchor_survei as $anchor)
-                                        <option value="{{ $anchor['id'] }}">{{ $anchor['name'] }}</option>
+                                <label for="survei" class="text-sm">ID Survei:</label>
+                                <select id="survei" name="survei" wire:model="fakultas.survei"
+                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
+                                    <option value="">Pilih ID Survei</option>
+                                    @foreach ($survei_faculties as $faculty)
+                                        <option value="{{ $faculty['id'] }}">{{ $faculty['name'] ?? $faculty['nama'] ?? $faculty['faculty_name'] ?? 'Fakultas ID: '.$faculty['id'] }}</option>
                                     @endforeach
                                 </select>
-                                @error('fakultas.survei_anchor')
+                                @error('fakultas.survei')
                                     <span class="text-red-500 text-xs">{{ $message }}</span>
                                 @enderror
                             </div>
 
+                            <!-- Akreditasi dropdown -->
                             <div class="flex flex-col gap-y-2 col-span-12 mb-4">
-                                <label for="akreditas_anchor" class="text-sm">Akreditasi:</label>
-                                <select multiple id="akreditas_anchor" name="akreditas_anchor"
-                                    wire:model="fakultas.akreditas_anchor"
-                                    class="multi-select p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
-                                    {{-- <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option> --}}
+                                <label for="akreditasi" class="text-sm">Akreditasi:</label>
+                                <select id="akreditasi" name="akreditasi" wire:model="fakultas.akreditasi"
+                                    class="p-4 text-sm rounded-md bg-neutral-100 text-slate-600 border border-neutral-200">
+                                    <option value="">Pilih Akreditasi</option>
+                                    <option value="1">Fakultas Ilmu Sosial</option>
+                                    <option value="2">Fakultas Ekonomi</option>
+                                    <option value="3">Fakultas Teknik</option>
+                                    <option value="4">Fakultas Hukum</option>
+                                    <option value="5">Fakultas Kedokteran</option>
                                 </select>
-                                @error('fakultas.akreditas_anchor')
+                                @error('fakultas.akreditasi')
                                     <span class="text-red-500 text-xs">{{ $message }}</span>
                                 @enderror
                             </div>
@@ -145,6 +149,9 @@
                             <th>No.</th>
                             <th>Kode</th>
                             <th>Nama</th>
+                            <th>AMI</th>
+                            <th>Survei</th>
+                            <th>Akreditasi</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -154,6 +161,20 @@
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $fakultas['code'] }}</td>
                                 <td>{{ $fakultas['name'] }}</td>
+                                <td>
+                                    @php
+                                        
+                                        $amiFaculty = collect($ami_faculties)->firstWhere('id', $fakultas['ami']);
+                                    @endphp
+                                    {{ $amiFaculty['name'] ?? $amiFaculty['department_name'] ?? 'N/A' }}
+                                </td>
+                                <td>
+                                    @php
+                                        $surveiFaculty = collect($survei_faculties)->firstWhere('id', $fakultas['survei']);
+                                    @endphp
+                                    {{ $surveiFaculty['name'] ?? $surveiFaculty['nama'] ?? $surveiFaculty['department_name'] ?? 'N/A' }}
+                                </td>
+                                <td>{{ $fakultas['akreditasi'] }}</td>
                                 <td>
                                     <div class="inline-flex gap-x-2">
                                         <!-- Edit button -->
@@ -176,6 +197,7 @@
         </div>
 
     </section>
+    
     @push('scripts')
         <script>
             $(document).ready(function() {
